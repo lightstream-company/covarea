@@ -1,0 +1,26 @@
+{
+  "name": "covarea",
+  "version": "0.1.0",
+  "description": "Calculate the coverage of a rectangular area by circles on a 2D map",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/ --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightstream-company/covarea.git"
+  },
+  "author": "Lightstream company",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lightstream-company/covarea/issues"
+  },
+  "homepage": "https://github.com/lightstream-company/covarea#readme",
+  "dependencies": {
+    "geolib": "^2.0.21"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}
