@@ -1,9 +1,11 @@
 {
   "name": "covarea",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Calculate the coverage of a rectangular area by circles on a 2D map",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "prepublish": "npm run compile",
+    "compile": "babel -d dist/ src/",
     "test": "mocha test/ --recursive"
   },
   "repository": {
@@ -20,6 +22,8 @@
     "geolib": "^2.0.21"
   },
   "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
     "chai": "^3.5.0",
     "mocha": "^3.0.2"
   }
