@@ -90,6 +90,18 @@ function honeycomb(boundingBox, radius) {
 }
 
 function normalizeBoundingBox(boundingBox) {
+  if (Array.isArray(boundingBox)) {
+    return {
+      southWest: {
+        latitude: boundingBox[0],
+        longitude: boundingBox[1]
+      },
+      northEast: {
+        latitude: boundingBox[2],
+        longitude: boundingBox[3]
+      }
+    };
+  }
   return {
     southWest: {
       latitude: boundingBox.southWest.lat,

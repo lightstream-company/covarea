@@ -1,6 +1,6 @@
 {
   "name": "covarea",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Calculate the coverage of a rectangular area by circles on a 2D map",
   "main": "dist/index.js",
   "scripts": {

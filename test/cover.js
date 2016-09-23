@@ -38,4 +38,13 @@ describe('cover behavior', () => {
     coverage[0].center.lon.should.be.closeTo(0, 0.001);
     coverage[0].radius.should.equal(maxRadius);
   });
+
+  it('should normalize an array of coordinates', () => {
+    const boundingBox = [0, 0, 10, 10]; // S W N E
+    const maxRadius = 300000;
+
+    const coverage = cover(boundingBox, maxRadius);
+
+    coverage.should.have.a.lengthOf(8);
+  });
 });
