@@ -33,5 +33,9 @@ describe('cover behavior', () => {
     const coverage = cover(boundingBox, maxRadius);
 
     coverage.should.have.a.lengthOf(8);
+
+    coverage[0].center.lat.should.be.closeTo(1.347, 0.0005);
+    coverage[0].center.lon.should.be.closeTo(0, 0.001);
+    coverage[0].radius.should.equal(maxRadius);
   });
 });

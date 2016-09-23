@@ -26,27 +26,29 @@ function computeDistanceOnYAxis(boundingBox) {
     });
 }
 
-function computeLatitudes(southWestGeolibPoint, distances, radius) {
+function computeLatitudes(boundingBox, radius) {
+  const distanceOnYAxis = computeDistanceOnYAxis(boundingBox);
   const circleCenterDistanceOnYAxis = computeCircleCenterDistanceOnYAxis(radius);
-  const numberOfCirclesOnYAxis = Math.ceil(distances.yAxis / circleCenterDistanceOnYAxis);
+  const numberOfCirclesOnYAxis = Math.ceil(distanceOnYAxis / circleCenterDistanceOnYAxis);
 
   const latitudes = [];
   for (let iy = 0; iy < numberOfCirclesOnYAxis; iy++) {
     let distance = (circleCenterDistanceOnYAxis * iy) + (radius / 2);
-    let latitude = geolib.computeDestinationPoint(southWestGeolibPoint, distance, 0).latitude;
+    let latitude = geolib.computeDestinationPoint(boundingBox.southWest, distance, 0).latitude;
     latitudes.push(latitude);
   }
   return latitudes;
 }
 
-function computeLongitudes(southWestGeolibPoint, distances, radius) {
+function computeLongitudes(boundingBox, radius) {
+  const distanceOnXAxis = computeDistanceOnXAxis(boundingBox);
   const circleCenterDistanceOnXAxis = computeCircleCenterDistanceOnXAxis(radius);
-  const numberOfCirclesOnXAxis = Math.ceil(distances.xAxis / circleCenterDistanceOnXAxis);
+  const numberOfCirclesOnXAxis = Math.ceil(distanceOnXAxis / circleCenterDistanceOnXAxis);
 
   const longitudes = [];
   for (let ix = 0; ix < numberOfCirclesOnXAxis; ix++) {
     let distance = circleCenterDistanceOnXAxis * ix;
-    let longitude = geolib.computeDestinationPoint(southWestGeolibPoint, distance, 90).longitude;
+    let longitude = geolib.computeDestinationPoint(boundingBox.southWest, distance, 90).longitude;
     longitudes.push(longitude);
   }
   return longitudes;
@@ -78,13 +80,8 @@ function buildOddLinesCircles(latitudes, longitudes, radius) {
 }
 
 function honeycomb(boundingBox, radius) {
-  const distances = {
-    xAxis: computeDistanceOnXAxis(boundingBox),
-    yAxis: computeDistanceOnYAxis(boundingBox)
-  };
-
-  const latitudes = computeLatitudes(boundingBox.southWest, distances, radius);
-  const longitudes = computeLongitudes(boundingBox.northEast, distances, radius);
+  const latitudes = computeLatitudes(boundingBox, radius);
+  const longitudes = computeLongitudes(boundingBox, radius);
 
   const evenCircles = buildEvenLinesCircles(latitudes, longitudes, radius);
   const oddCircles = buildOddLinesCircles(latitudes, longitudes, radius);
