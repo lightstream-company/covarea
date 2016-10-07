@@ -40,7 +40,7 @@ describe('cover behavior', () => {
   });
 
   it('should normalize an array of coordinates', () => {
-    const boundingBox = [0, 0, 10, 10]; // S W N E
+    const boundingBox = [0, 0, 10, 10]; // W S E N
     const maxRadius = 300000;
 
     const coverage = cover(boundingBox, maxRadius);
